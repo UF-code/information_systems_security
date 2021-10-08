@@ -50,19 +50,14 @@ class Vigenere_Cipher_With_ASCII:
         return mod_layer
 
 
-    def remove_mode_layer(self, encrypted_text):
-        remove_last_layer = [ (ord(c) - self.last_layer) + self.mod for c in list(encrypted_text) ]
+    # Decrypting the encrypted message
+    def decryption(self, encrypted_text, extended_keyword_list, key):
+        remove_last_layer_mod = [ (ord(c) - self.last_layer) + self.mod for c in list(encrypted_text) ]
+        remove_extended_keyword = [ (remove_last_layer_mod[i] - extended_keyword_list[i]) for i in range(len(remove_last_layer_mod)) ]
+        remove_key_layer = [ n - key for n in remove_extended_keyword ]
+        convert_ascii_to_char = [ chr(n) for n in remove_key_layer ]
         
-        
-
-
-
-
-
-    def decryption(self):
-        pass
-
-
+        return convert_ascii_to_char
 
 
 if __name__ == "__main__":
@@ -70,8 +65,3 @@ if __name__ == "__main__":
     print(encrypted, len(encrypted))
     
 
-# randomized 
-# import random
-# random.shuffle(Alphabet)
-
-# print(Alphabet)
