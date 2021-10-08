@@ -1,6 +1,7 @@
 class Vigenere_Cipher_With_ASCII:
     def __init__(self, message):
         self.message = list(message.replace(" ", ""))
+        self.mod = 140
         self.last_layer = 194
 
     def ascii_layer(self):
@@ -27,8 +28,8 @@ class Vigenere_Cipher_With_ASCII:
         extended_ascii_keyword_list = [ord(c) for c in extended_keyword_list]
         return extended_ascii_keyword_list
     
-    def mod_layer(self, key_added_list, extended_keyword_list, mod):
-        modded_list = [ (key_added_list[i] + extended_keyword_list[i]) % mod for i in range(len(key_added_list)) ]
+    def mod_layer(self, key_added_list, extended_keyword_list):
+        modded_list = [ (key_added_list[i] + extended_keyword_list[i]) % self.mod for i in range(len(key_added_list)) ]
         result_text = [ chr( n + self.last_layer ) for n in modded_list ]
         return ''.join(result_text)
 
@@ -37,9 +38,15 @@ class Vigenere_Cipher_With_ASCII:
         ascii_list   = self.ascii_layer()
         key_list     = self.key_layer(int(input("Key: ")), ascii_list)
         keyword_list = self.keyword_layer(input("Keyword: "))
-        mod_layer    = self.mod_layer(key_list, keyword_list, int(input("Mod: ")))
+        mod_layer    = self.mod_layer(key_list, keyword_list)
 
         return mod_layer
+
+
+    def remove_mode_layer(self, encrypted_text):
+        remove_last_layer = [ ord(c) - self.last_layer for c in list(encrypted_text) ]
+
+
 
 
 
