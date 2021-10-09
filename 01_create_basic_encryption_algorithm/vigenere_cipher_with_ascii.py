@@ -7,7 +7,7 @@ class Vigenere_Cipher_With_ASCII:
 
     # Converting every single characther into their ascii code
     def ascii_layer(self, message):
-        message_text = list(message)
+        message_text = list(message.replace(" ", ""))
         numerical_list = [ord(c) for c in message_text]
         return numerical_list
 
