@@ -65,18 +65,29 @@ class Vigenere_Cipher_With_ASCII:
         key_layer_removed = [ n - key for n in extended_keyword_removed ]
         return key_layer_removed
 
+    # removing ascii layer
     def remove_ascii_layer(self, key_layer_removed):
         ascii_layer_removed = [ chr(n) for n in key_layer_removed ]
         return ascii_layer_removed
 
     # Decrypting the encrypted message
-    def decryption(self, encrypted_text, extended_keyword_list, key):
-        remove_last_layer_mod = [ (ord(c) - self.last_layer) + self.mod for c in list(encrypted_text) ]
-        remove_extended_keyword = [ (remove_last_layer_mod[i] - extended_keyword_list[i]) for i in range(len(remove_last_layer_mod)) ]
-        remove_key_layer = [ n - key for n in remove_extended_keyword ]
-        convert_ascii_to_char = [ chr(n) for n in remove_key_layer ]
+    def decryption(self):
+        mod_layer_removed = self.remove_mod_layer(input('Encrypted message about to be decrypted: '))
+        extended_keyword_list = self.keyword_layer(input("Keyword: "))
+        keyword_layer_removed = self.remove_keyword_layer(mod_layer_removed, extended_keyword_list)
+        key_layer_removed = self.remove_key_layer(keyword_layer_removed, int(input("Key: ")))
+        ascii_layer_removed = self.remove_ascii_layer(key_layer_removed)
+
+        return ascii_layer_removed
         
-        return convert_ascii_to_char
+
+    # def decryption(self, encrypted_text, extended_keyword_list, key):
+    #     remove_last_layer_mod = [ (ord(c) - self.last_layer) + self.mod for c in list(encrypted_text) ]
+    #     remove_extended_keyword = [ (remove_last_layer_mod[i] - extended_keyword_list[i]) for i in range(len(remove_last_layer_mod)) ]
+    #     remove_key_layer = [ n - key for n in remove_extended_keyword ]
+    #     convert_ascii_to_char = [ chr(n) for n in remove_key_layer ]
+        
+    #     return convert_ascii_to_char
 
 
 if __name__ == "__main__":
