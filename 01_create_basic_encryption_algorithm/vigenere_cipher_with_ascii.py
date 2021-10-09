@@ -1,14 +1,14 @@
 import sys
 
 class Vigenere_Cipher_With_ASCII:
-    def __init__(self, message):
-        self.message = list(message.replace(" ", ""))
+    def __init__(self):
         self.mod = 140
         self.last_layer = 194
 
     # Converting every single characther into their ascii code
-    def ascii_layer(self):
-        numerical_list = [ord(c) for c in self.message]
+    def ascii_layer(self, message):
+        message_text = list(message.replace(" ", ""))
+        numerical_list = [ord(c) for c in message_text]
         return numerical_list
 
     # Adding a numerical key into each ascii lists item
@@ -84,4 +84,5 @@ class Vigenere_Cipher_With_ASCII:
         
 
 if __name__ == "__main__":
-    Vigenere_Cipher_With_ASCII(input("Message about to be crypted: ")).decryption() if sys.argv[1] == 'dec' else Vigenere_Cipher_With_ASCII(input("Message about to be crypted: ")).encryption()
+    # Encryption default & if you wanna chose decryption you have to specify system arg as 'dec'
+    Vigenere_Cipher_With_ASCII().decryption() if sys.argv[1] == 'dec' else Vigenere_Cipher_With_ASCII().encryption()
