@@ -1,3 +1,5 @@
+import sys
+
 class Vigenere_Cipher_With_ASCII:
     def __init__(self, message):
         self.message = list(message.replace(" ", ""))
@@ -81,17 +83,5 @@ class Vigenere_Cipher_With_ASCII:
         return ascii_layer_removed
         
 
-    # def decryption(self, encrypted_text, extended_keyword_list, key):
-    #     remove_last_layer_mod = [ (ord(c) - self.last_layer) + self.mod for c in list(encrypted_text) ]
-    #     remove_extended_keyword = [ (remove_last_layer_mod[i] - extended_keyword_list[i]) for i in range(len(remove_last_layer_mod)) ]
-    #     remove_key_layer = [ n - key for n in remove_extended_keyword ]
-    #     convert_ascii_to_char = [ chr(n) for n in remove_key_layer ]
-        
-    #     return convert_ascii_to_char
-
-
 if __name__ == "__main__":
-    encrypted = Vigenere_Cipher_With_ASCII(input("Message about to be crypted: ")).encryption()
-    print(encrypted, len(encrypted))
-    
-
+    Vigenere_Cipher_With_ASCII(input("Message about to be crypted: ")).decryption() if sys.argv[1] == 'dec' else Vigenere_Cipher_With_ASCII(input("Message about to be crypted: ")).encryption()
