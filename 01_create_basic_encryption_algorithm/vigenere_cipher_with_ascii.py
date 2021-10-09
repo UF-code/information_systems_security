@@ -65,8 +65,9 @@ class Vigenere_Cipher_With_ASCII:
         key_layer_removed = [ n - key for n in extended_keyword_removed ]
         return key_layer_removed
 
-    def remove_ascii_layer(self):
-        pass
+    def remove_ascii_layer(self, key_layer_removed):
+        ascii_layer_removed = [ chr(n) for n in key_layer_removed ]
+        return ascii_layer_removed
 
     # Decrypting the encrypted message
     def decryption(self, encrypted_text, extended_keyword_list, key):
