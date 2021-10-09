@@ -50,6 +50,18 @@ class Vigenere_Cipher_With_ASCII:
         return mod_layer
 
 
+    # Removing mod & last layer
+    def remove_mod_layer(self, encrypted_text):
+        mod_layer_removed = [ (ord(c) - self.last_layer) + self.mod for c in list(encrypted_text) ]
+        return mod_layer_removed
+
+    def remove_keyword_layer(self):
+        pass
+    def remove_key_layer(self):
+        pass
+    def remove_ascii_layer(self):
+        pass
+
     # Decrypting the encrypted message
     def decryption(self, encrypted_text, extended_keyword_list, key):
         remove_last_layer_mod = [ (ord(c) - self.last_layer) + self.mod for c in list(encrypted_text) ]
@@ -61,7 +73,7 @@ class Vigenere_Cipher_With_ASCII:
 
 
 if __name__ == "__main__":
-    encrypted = Vigenere_Cipher_With_ASCII(input("Message about the be crypted: ")).encryption()
+    encrypted = Vigenere_Cipher_With_ASCII(input("Message about to be crypted: ")).encryption()
     print(encrypted, len(encrypted))
     
 
