@@ -55,10 +55,14 @@ class Vigenere_Cipher_With_ASCII:
         mod_layer_removed = [ (ord(c) - self.last_layer) + self.mod for c in list(encrypted_text) ]
         return mod_layer_removed
 
-    def remove_keyword_layer(self):
-        pass
+    # Removing keyword layer
+    def remove_keyword_layer(self, mod_layer_removed, extended_keyword_list):
+        extended_keyword_removed = [ (mod_layer_removed[i] - extended_keyword_list[i]) for i in range(len(mod_layer_removed)) ]
+        return extended_keyword_removed
+
     def remove_key_layer(self):
         pass
+
     def remove_ascii_layer(self):
         pass
 
