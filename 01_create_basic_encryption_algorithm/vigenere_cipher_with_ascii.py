@@ -18,13 +18,13 @@ class Vigenere_Cipher_With_ASCII:
     
     # Extending a keyword list to match lenght of the message
     # Converting every single characther into their ascii code
-    def keyword_layer(self, keyword):
+    def keyword_layer(self, keyword, ascii_list):
         formatted_keyword_list = list(keyword.replace(" ", ""))
         extended_keyword_list = []
 
         counter=0
         while True:
-            if len(extended_keyword_list) == len(self.message):
+            if len(extended_keyword_list) == len(ascii_list):
                 break
             if counter == len(formatted_keyword_list):
                 counter=0
@@ -44,11 +44,12 @@ class Vigenere_Cipher_With_ASCII:
 
 
     def encryption(self):
-        ascii_list   = self.ascii_layer()
+        ascii_list   = self.ascii_layer(input("Message about to be crypted: "))
         key_list     = self.key_layer(int(input("Key: ")), ascii_list)
-        keyword_list = self.keyword_layer(input("Keyword: "))
+        keyword_list = self.keyword_layer(input("Keyword: "), ascii_list)
         mod_layer    = self.mod_layer(key_list, keyword_list)
-
+        
+        print(f"Encrypted Text: {mod_layer}")
         return mod_layer
 
 
@@ -75,12 +76,14 @@ class Vigenere_Cipher_With_ASCII:
     # Decrypting the encrypted message
     def decryption(self):
         mod_layer_removed = self.remove_mod_layer(input('Encrypted message about to be decrypted: '))
-        extended_keyword_list = self.keyword_layer(input("Keyword: "))
+        extended_keyword_list = self.keyword_layer(input("Keyword: "), mod_layer_removed)
         keyword_layer_removed = self.remove_keyword_layer(mod_layer_removed, extended_keyword_list)
         key_layer_removed = self.remove_key_layer(keyword_layer_removed, int(input("Key: ")))
         ascii_layer_removed = self.remove_ascii_layer(key_layer_removed)
+        decrypted_text = ''.join(ascii_layer_removed)
 
-        return ascii_layer_removed
+        print(decrypted_text)
+        return decrypted_text
         
 
 if __name__ == "__main__":
