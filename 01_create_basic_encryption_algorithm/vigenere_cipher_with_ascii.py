@@ -88,4 +88,4 @@ class Vigenere_Cipher_With_ASCII:
 
 if __name__ == "__main__":
     # Encryption default & if you wanna chose decryption you have to specify system arg as 'dec'
-    Vigenere_Cipher_With_ASCII().decryption() if sys.argv[1] == 'dec' else Vigenere_Cipher_With_ASCII().encryption()
+    Vigenere_Cipher_With_ASCII().decryption() if sys.argv[1] == 'dec' else Vigenere_Cipher_With_ASCII().encryption() if sys.argv[1] == "enc" else print("Invalid Credentials")
