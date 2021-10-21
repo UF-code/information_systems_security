@@ -22,6 +22,9 @@ if __name__ == "__main__":
     # if system argument is "enc" Encryption & if you wanna chose decryption you have to specify system arg as 'dec'
     decryption(input('Cipher Text: ').encode('utf-8'), input('Key: ').encode('utf-8'), input('Initial Vector: ').encode('utf-8')) if sys.argv[1] == 'dec' else encryption(input('Text: ').encode('utf-8'), input('Key: ').encode('utf-8'), input('Initial Vector: ').encode('utf-8')) 
 
+# 15541014, 170541028, 190541001, 15541023, 200541306, 200541073
+# aFqnf+4uKy3arqQlD6LneNd4Sx2Y6wgveUeIf4lKVViTooLEhqO2q9VffJ77+sS0rkN+Fl7Acj2diD+rq8uSiiY/R74Jvh3Afb9+yIYvFF1AKCGvFe7WdfPYS9Yrjdi9HSKMQQ==
+
 # First Encryption Test
 # Text: Grup uyelerinin okul numaralarini virgul ile ayirarak G6 hucresine giriniz
 # Key: rnop3TnHwJ7P9zzLb0Z3qUjfhu1Cx9bW
