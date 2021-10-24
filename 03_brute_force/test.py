@@ -2,16 +2,60 @@
 # netsh wlan show profile router_name
 # netsh wlan show profile router_name key=clear
 
+# def ssh_connect(ip, user, password, command):
+#     client = paramiko.SSHClient()
+#     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+#     client.connect(ip, username= user, password= password)
+#     session = client.get_transport().open_session()
+#     if session.active:
+#         session.exec_command(command)
+#         print(session.recv(1024))
+#     return 
+# ssh_connect('127.0.0.1', 'test', 'test123', 'id')
 
-from netmiko import ConnectHandler
 
-connect = 'test'
+
+# hostname = '127.0.0.1'
+# port = 22
+# user = 'phil'
+# passwd = 'pythoncode'
+
+# try:
+#     client = paramiko.SSHClient()
+#     client.load_system_host_keys()
+#     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+#     client.connect(hostname, port= port, username= user, password= passwd)
+
+#     while True:
+#         try:
+#             cmd = input("$> ")
+#             if cmd == "exit": break 
+#             stdin, stdout, stderr = client.exec_command(cmd)
+#             print(stdout.read().decode())
+
+
+#         except KeyboardInterrupt:
+#             break
+#     client.close()
+
+
+# except Exception as err:
+#     print(str(err))
+
+import paramiko
+
+
+hostname = '192.168.1.33'
+port = 22
+user = 'mancave'
 
 try:
-    connect = ConnectHandler(ip= '192.168.1.210', device_type= 'cisco_ios', username= 'roger', password= '123123')
-    # connect = 'testing'
-    
+    client = paramiko.SSHClient()
+    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    client.connect(hostname, port= port, username= user, password='742369')
+    session = client.get_transport().open_session()
+    print(session.active)
 except:
-    pass
+    print('Login Attempt Has Failed')
+    
 
-print(connect)
