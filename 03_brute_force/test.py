@@ -42,20 +42,34 @@
 # except Exception as err:
 #     print(str(err))
 
-import paramiko
+# import paramiko
 
 
-hostname = '192.168.1.33'
-port = 22
-user = 'mancave'
+# hostname = '192.168.1.33'
+# port = 22
+# user = 'mancave'
 
-try:
-    client = paramiko.SSHClient()
-    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    client.connect(hostname, port= port, username= user, password='742369')
-    session = client.get_transport().open_session()
-    print(session.active)
-except:
-    print('Login Attempt Has Failed')
+# try:
+#     client = paramiko.SSHClient()
+#     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+#     client.connect(hostname, port= port, username= user, password='test1234')
+#     session = client.get_transport().open_session()
+#     print(session.active)
+# except:
+#     print('Login Attempt Has Failed')
     
+import numpy as np
 
+listA = [11, 18, 19, 21, 29, 46]
+
+splits = np.array_split(listA, 3)
+
+for array in splits:
+    print(list(array))
+
+
+with open('passwords.txt', 'r') as file:
+    passwords= file.read().split('\n')
+    
+    passwords1, passwords2, passwords3, passwords4 = np.array_split(passwords, 4)
+    print(passwords1, passwords2, passwords3, passwords4)    
