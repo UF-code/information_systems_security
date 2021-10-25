@@ -1,14 +1,14 @@
 import paramiko
 
 
-hostname = '192.168.1.33'
+hostname = '127.0.0.1'
 port = 22
-user = 'mancave'
+user = 'test'
 
 # try:
 #     client = paramiko.SSHClient()
 #     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-#     client.connect(hostname, port= port, username= user, password='742369')
+#     client.connect(hostname, port= port, username= user, password='test123')
 #     session = client.get_transport().open_session()
 #     print(session.active)
 # except:
