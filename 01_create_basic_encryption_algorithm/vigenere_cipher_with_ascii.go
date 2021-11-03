@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 func convert_to_ascii(plain_text string) ([]int, int) {
@@ -22,8 +23,23 @@ func add_key(ascii []int, key int) []int {
 	return ascii
 }
 
-func add_keyword(ascii []int, keyword string) []int {
+func generate_keyword_list_add(length_ascii int, keyword string) []int {
+	var extended_keyword_list []string
+	counter := 0
+	for {
+		if len(extended_keyword_list) == length_ascii {
+			break
+		}
+		if counter == len(keyword) {
+			counter = 0
+		}
+		counter += 1
+		extended_keyword_list = append(extended_keyword_list, string(keyword[counter-1]))
+	}
 
+	ascii, _ := convert_to_ascii(strings.Join(extended_keyword_list, ""))
+
+	return ascii
 }
 
 func convert_to_char(ascii_text []int) ([]string, int) {
@@ -47,7 +63,9 @@ func main() {
 
 	fmt.Print("\n")
 
-	test := add_key(result_ascii, 100)
+	// test := add_key(result_ascii, 100)
+	// fmt.Print(test)
+	test := generate_keyword_list_add(length_ascii, "test")
 	fmt.Print(test)
 
 	fmt.Print("\n")
