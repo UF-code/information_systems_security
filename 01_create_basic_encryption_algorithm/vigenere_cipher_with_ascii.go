@@ -15,6 +15,17 @@ func convert_to_ascii(plain_text string) ([]int, int) {
 	return ascii, len(ascii)
 }
 
+func add_key(ascii []int, key int) []int {
+	for i := range ascii {
+		ascii[i] += key
+	}
+	return ascii
+}
+
+func add_keyword(ascii []int, keyword string) []int {
+
+}
+
 func convert_to_char(ascii_text []int) ([]string, int) {
 
 	var char []string
@@ -36,7 +47,11 @@ func main() {
 
 	fmt.Print("\n")
 
+	test := add_key(result_ascii, 100)
+	fmt.Print(test)
+
+	fmt.Print("\n")
+
 	result_char, length_char := convert_to_char(result_ascii)
 	fmt.Print(result_char, length_char)
-
 }
