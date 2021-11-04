@@ -52,7 +52,7 @@ func add_keyword(key_added_ascii []int, keyword_list []int) []int {
 }
 
 // ENCRYPTION
-func encryption(mod int) {
+func encryption(mod int) string {
 	scanner := bufio.NewScanner(os.Stdin)
 	fmt.Print("Message about to be encrypted: ")
 	scanner.Scan()
@@ -68,26 +68,21 @@ func encryption(mod int) {
 	key, _ := strconv.ParseInt(scanner.Text(), 10, 64)
 	key_added_ascii := add_key(result_ascii, int(key))
 
-	fmt.Print(key_added_ascii)
-	fmt.Print("\n")
-
 	fmt.Print("Keyword: ")
 	scanner.Scan()
 	keyword := scanner.Text()
 	keyword_list := generate_keyword_list(length_ascii, keyword)
-	fmt.Print(keyword_list)
 
-	// fmt.Print("\n")
+	encrypted_ascii := add_keyword(key_added_ascii, keyword_list)
 
-	// // test := add_key(result_ascii, 100)
-	// // fmt.Print(test)
-	// test := generate_keyword_list(length_ascii, "test")
-	// fmt.Print(test)
+	var encrypted_message []string
+	for i := range encrypted_ascii {
+		encrypted_ascii[i] %= mod
+		encrypted_message = append(encrypted_message, string(encrypted_ascii[i]))
+	}
 
-	// fmt.Print("\n")
+	return strings.Join(encrypted_message, "")
 
-	// result_char, length_char := convert_to_char(result_ascii)
-	// fmt.Print(result_char, length_char)
 }
 
 // DECRYPTION
@@ -108,5 +103,6 @@ func decryption() {
 
 func main() {
 	mod := 256
-	encryption(mod)
+	test := encryption(mod)
+	fmt.Println(test)
 }
