@@ -97,7 +97,7 @@ func convert_to_char(ascii_text []int) ([]string, int) {
 
 }
 
-func decryption() {
+func decryption(mod int) {
 
 }
 
