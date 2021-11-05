@@ -86,15 +86,14 @@ func encryption(mod int) string {
 }
 
 // DECRYPTION
-func convert_to_char(ascii_text []int) ([]string, int) {
+func convert_to_char(ascii_text []int) string {
 	var char []string
 	for _, x := range ascii_text {
 		// fmt.Print(string(x), "\n")
 		char = append(char, string(x))
 	}
 
-	return char, len(char)
-
+	return strings.Join(char, "")
 }
 
 func remove_mod_layer(encrypted_message string, mod int) ([]int, int) {
@@ -122,7 +121,7 @@ func remove_keyword(key_added_ascii []int, keyword_list []int) []int {
 	return key_added_ascii
 }
 
-func decryption(mod int) {
+func decryption(mod int) string {
 	scanner := bufio.NewScanner(os.Stdin)
 	fmt.Print("Message about to be decrypted: ")
 	scanner.Scan()
@@ -130,12 +129,41 @@ func decryption(mod int) {
 
 	mod_layer_removed, length_of_mod_layer := remove_mod_layer(encrypted_message, mod)
 
+	fmt.Print("Keyword: ")
+	scanner.Scan()
+	keyword := scanner.Text()
+	keyword_list := generate_keyword_list(length_of_mod_layer, keyword)
+
+	keyword_removed := remove_keyword(mod_layer_removed, keyword_list)
+
+	// adding key
+	fmt.Print("Key: ")
+	scanner.Scan()
+	key, _ := strconv.ParseInt(scanner.Text(), 10, 64)
+	key_removed := remove_key(keyword_removed, int(key))
+
+	decrypted_message := convert_to_char(key_removed)
+
+	return decrypted_message
+
 }
 
 func main() {
 	mod := 256
-	test := encryption(mod)
-	fmt.Println(test)
 
-	// decryption(mod)
+	// test := encryption(mod)
+	// fmt.Println(test)
+
+	// test1 := decryption(mod)
+	// fmt.Println(test1)
+
+	mode := os.Args[1]
+	fmt.Println(mode)
+	if mode == "dec" {
+		fmt.Println(decryption(mod))
+	} else if mode == "enc" {
+		fmt.Println(encryption(mod))
+	} else {
+		fmt.Println("Invalid Credentials")
+	}
 }
