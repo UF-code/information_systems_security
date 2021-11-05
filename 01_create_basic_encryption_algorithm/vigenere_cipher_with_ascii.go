@@ -115,6 +115,13 @@ func remove_key(ascii []int, key int) []int {
 	return ascii
 }
 
+func remove_keyword(key_added_ascii []int, keyword_list []int) []int {
+	for i := range key_added_ascii {
+		key_added_ascii[i] -= keyword_list[i]
+	}
+	return key_added_ascii
+}
+
 func decryption(mod int) {
 	scanner := bufio.NewScanner(os.Stdin)
 	fmt.Print("Message about to be decrypted: ")
