@@ -108,6 +108,13 @@ func remove_mod_layer(encrypted_message string, mod int) ([]int, int) {
 	return mod_layer_removed, len(mod_layer_removed)
 }
 
+func remove_key(ascii []int, key int) []int {
+	for i := range ascii {
+		ascii[i] -= key
+	}
+	return ascii
+}
+
 func decryption(mod int) {
 	scanner := bufio.NewScanner(os.Stdin)
 	fmt.Print("Message about to be decrypted: ")
