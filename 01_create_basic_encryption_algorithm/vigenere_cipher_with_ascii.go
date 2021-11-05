@@ -77,7 +77,7 @@ func encryption(mod int) string {
 
 	var encrypted_message []string
 	for i := range encrypted_ascii {
-		encrypted_ascii[i] %= mod
+		encrypted_ascii[i] += mod
 		encrypted_message = append(encrypted_message, string(encrypted_ascii[i]))
 	}
 
@@ -97,7 +97,24 @@ func convert_to_char(ascii_text []int) ([]string, int) {
 
 }
 
+func remove_mod_layer(encrypted_message string, mod int) ([]int, int) {
+	var mod_layer_removed []int
+
+	for _, x := range encrypted_message {
+		// fmt.Println(int(x) + 1)
+		mod_layer_removed = append(mod_layer_removed, int(x)-mod)
+	}
+
+	return mod_layer_removed, len(mod_layer_removed)
+}
+
 func decryption(mod int) {
+	scanner := bufio.NewScanner(os.Stdin)
+	fmt.Print("Message about to be decrypted: ")
+	scanner.Scan()
+	encrypted_message := scanner.Text()
+
+	mod_layer_removed, length_of_mod_layer := remove_mod_layer(encrypted_message, mod)
 
 }
 
@@ -105,4 +122,6 @@ func main() {
 	mod := 256
 	test := encryption(mod)
 	fmt.Println(test)
+
+	// decryption(mod)
 }
