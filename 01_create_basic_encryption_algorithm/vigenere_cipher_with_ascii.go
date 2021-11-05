@@ -100,7 +100,6 @@ func remove_mod_layer(encrypted_message string, mod int) ([]int, int) {
 	var mod_layer_removed []int
 
 	for _, x := range encrypted_message {
-		// fmt.Println(int(x) + 1)
 		mod_layer_removed = append(mod_layer_removed, int(x)-mod)
 	}
 
@@ -136,7 +135,7 @@ func decryption(mod int) string {
 
 	keyword_removed := remove_keyword(mod_layer_removed, keyword_list)
 
-	// adding key
+	// removing key
 	fmt.Print("Key: ")
 	scanner.Scan()
 	key, _ := strconv.ParseInt(scanner.Text(), 10, 64)
@@ -150,15 +149,8 @@ func decryption(mod int) string {
 
 func main() {
 	mod := 256
-
-	// test := encryption(mod)
-	// fmt.Println(test)
-
-	// test1 := decryption(mod)
-	// fmt.Println(test1)
-
 	mode := os.Args[1]
-	fmt.Println(mode)
+
 	if mode == "dec" {
 		fmt.Println(decryption(mod))
 	} else if mode == "enc" {
