@@ -2,9 +2,23 @@ package main
 
 import (
 	"bufio"
+	"crypto/aes"
+	"crypto/cipher"
+	"encoding/base64"
 	"fmt"
 	"os"
 )
+
+func encryption(message, secret_key, initial_vector string) string {
+	block, _ := aes.NewCipher([]byte(secret_key))
+	plain_text := []byte(message)
+	cfb := cipher.NewCFBEncrypter(block, []byte(initial_vector))
+
+	cipher_text := make([]byte, len(plain_text))
+	cfb.XORKeyStream(cipher_text, plain_text)
+
+	return base64.StdEncoding.EncodeToString(cipher_text)
+}
 
 func get_input() (string, string, string) {
 	scanner := bufio.NewScanner(os.Stdin)
