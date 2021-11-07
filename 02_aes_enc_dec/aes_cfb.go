@@ -38,13 +38,11 @@ func get_input() (string, string, string) {
 	var message string
 	if os.Args[1] == "dec" {
 		fmt.Print("Message About to be Decrypted: ")
-		scanner.Scan()
-		message = scanner.Text()
 	} else {
 		fmt.Print("Message About to be Encrypted: ")
-		scanner.Scan()
-		message = scanner.Text()
 	}
+	scanner.Scan()
+	message = scanner.Text()
 
 	// secret key
 	fmt.Print("Secret Key: ")
