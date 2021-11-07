@@ -7,11 +7,6 @@ import (
 	"fmt"
 )
 
-// # Second Encryption Test
-// # Text: http://yaz.tf.firat.edu.tr/tr
-// # Key: wEgDCNvhccofPTkFt9zUdDgZDIVdGC9L
-// # Initial Vector: crGTopEfBGXE1k1x
-
 var iv = []byte("crGTopEfBGXE1k1x")
 var secretKey string = "wEgDCNvhccofPTkFt9zUdDgZDIVdGC9L"
 
