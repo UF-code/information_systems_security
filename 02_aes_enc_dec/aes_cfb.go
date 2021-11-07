@@ -20,6 +20,17 @@ func encryption(message, secret_key, initial_vector string) string {
 	return base64.StdEncoding.EncodeToString(cipher_text)
 }
 
+func decryption(message, secret_key, initial_vector string) string {
+	block, _ := aes.NewCipher([]byte(secret_key))
+	cipher_text, _ := base64.StdEncoding.DecodeString(message)
+
+	cfb := cipher.NewCFBDecrypter(block, []byte(initial_vector))
+	plain_text := make([]byte, len(cipher_text))
+	cfb.XORKeyStream(plain_text, cipher_text)
+
+	return string(plain_text)
+}
+
 func get_input() (string, string, string) {
 	scanner := bufio.NewScanner(os.Stdin)
 
